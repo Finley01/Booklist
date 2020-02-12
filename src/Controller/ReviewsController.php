@@ -31,8 +31,6 @@ class ReviewsController extends AbstractController
      */
     public function new(Request $request, Books $books): Response
     {
-//        dd($request->attributes->parameters->id);
-//        dd($request->attributes->parameters->id);
         $review = new Reviews();
         $form = $this->createForm(ReviewsType::class, $review);
         $form->handleRequest($request);
@@ -43,7 +41,7 @@ class ReviewsController extends AbstractController
             $entityManager->persist($review);
             $entityManager->flush();
 
-            return $this->redirectToRoute('reviews_index');
+            return $this->redirectToRoute('books_show', ['id' => $books->getId()]);
         }
 
         return $this->render('reviews/new.html.twig', [
