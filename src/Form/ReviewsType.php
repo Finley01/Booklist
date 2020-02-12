@@ -14,7 +14,6 @@ class ReviewsType extends AbstractType
         $builder
             ->add('description')
             ->add('name')
-            ->add('book')
         ;
     }
 

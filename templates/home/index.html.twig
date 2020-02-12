@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/Symfonyidk/Booklist/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/Symfonyidk/Booklist/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="example-wrapper">
+
+    </div>
+    <div class="container">
+        <h1 class="d-flex justify-content-center">Welcome to Booklist</h1>
+        <div class="d-flex flex-row justify-content-center flex-wrap">
+            {% for books in books %}
+                <a class="column border mt-1 ml-1 w-25 p-2 text-decoration-none text-dark" href={{ path('books_show', {'id': books.id}) }}>
+                    <h5 class="col-sm text-break mb-2">Title: {{ books.title }}</h5>
+                    <h6 class="col-sm text-break mb-4">Author: {{ books.author }}</h6>
+                    <p class="col-sm">ISBN: {{ books.isbn }}</p>
+                    <p class="col-sm">Price: {{ books.price }}</p>
+                </a>
+            {% else %}
+                <p>There are currently no books listed</p>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

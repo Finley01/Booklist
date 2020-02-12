@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Books;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,8 +13,10 @@ class HomeController extends AbstractController
      */
     public function index()
     {
+        $books = $this->getDoctrine()->getRepository(Books::class)->findAll();
+
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'books' => $books,
         ]);
     }
 }

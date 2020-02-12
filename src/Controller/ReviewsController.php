@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Reviews;
+use App\Entity\Books;
 use App\Form\ReviewsType;
 use App\Repository\ReviewsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,6 +36,7 @@ class ReviewsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $review->setBook($book_id);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($review);
             $entityManager->flush();

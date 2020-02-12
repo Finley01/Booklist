@@ -7,30 +7,42 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ book.id }}</td>
-            </tr>
-            <tr>
-                <th>Isbn</th>
-                <td>{{ book.isbn }}</td>
-            </tr>
-            <tr>
-                <th>Author</th>
-                <td>{{ book.author }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ book.title }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ book.price }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ book.id }}</td>
+        </tr>
+        <tr>
+            <th>Isbn</th>
+            <td>{{ book.isbn }}</td>
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>{{ book.author }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ book.title }}</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>{{ book.price }}</td>
+        </tr>
         </tbody>
     </table>
 
+    <h2>Reviews of this book:</h2>
+    {% for review in book.reviews %}
+        <div class="border d-flex flex-column w-25">
+            <h6>Reviewed by: {{ review.name }}</h6>
+            <p class="text-break">{{ review.description }}</p>
+        </div>
+    {% else %}
+        <p>There are currently no reviews for this book.</p>
+    {% endfor %}
+
     <a href="{{ path('books_index') }}">back to list</a>
+
+    <a href="{{ path('reviews_new', {'id': book.id}) }}">make a review</a>
 
     <a href="{{ path('books_edit', {'id': book.id}) }}">edit</a>
 
