@@ -39,12 +39,8 @@
     {% else %}
         <p>There are currently no reviews for this book.</p>
     {% endfor %}
-
-    <a href="{{ path('books_index') }}">back to list</a>
-
     <a href="{{ path('reviews_new', {'id': book.id}) }}">make a review</a>
-
+    <a href="{{ path('books_index') }}">back to list of books</a>
     <a href="{{ path('books_edit', {'id': book.id}) }}">edit</a>
-
     {{ include('books/_delete_form.html.twig') }}
 {% endblock %}

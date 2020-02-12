@@ -27,16 +27,18 @@ class ReviewsController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="reviews_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="reviews_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Books $books): Response
     {
+//        dd($request->attributes->parameters->id);
+//        dd($request->attributes->parameters->id);
         $review = new Reviews();
         $form = $this->createForm(ReviewsType::class, $review);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $review->setBook($book_id);
+            $review->setBook($books);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($review);
             $entityManager->flush();
